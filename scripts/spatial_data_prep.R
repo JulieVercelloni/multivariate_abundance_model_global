@@ -16,11 +16,11 @@ density_84 <- raster("data/density_resampled_proj.tif")
 
 #### Read the reef data
 # ######################################################### Transform use 
-proy_merc<-CRS("+proj=merc +lon_0=150 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0")
+proy_merc <- CRS("+proj=merc +lon_0=150 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0")
 
 # # Make it spatial
-Rec_spat_sf <- read.csv('data/reef_data.csv')%>%
-  st_as_sf(coords = c('lng', 'lat'), crs = st_crs(4326)) %>%
+Rec_spat_sf <- read.csv("data/reef_data.csv") %>%
+  st_as_sf(coords = c("lng", "lat"), crs = st_crs(4326)) %>%
   st_transform(crs = proy_merc) 
 
 Rec_spat_sp <- as_Spatial(Rec_spat_sf)
@@ -35,7 +35,7 @@ sum(is.na(new.spdf1$extract.col)) # need to be = 0
 
 # Transform back to long and lat 
 
-reef_data_with_density_sf <- Rec_spat_sf%>%
+reef_data_with_density_sf <- Rec_spat_sf %>%
   dplyr::select(reef_name) %>%
   cbind(new.spdf1@data$extract.col) %>%
   dplyr::rename(Density = new.spdf1.data.extract.col) %>% distinct() %>%
