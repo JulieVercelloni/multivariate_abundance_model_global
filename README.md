@@ -1,4 +1,4 @@
-#Multivariate abundance model
+# Multivariate abundance model
 
 This model aims to estimate interactions between communities as well as the influences of known variables including environmental disturbances, sampling design, biological factors, etc.
 
